@@ -12,7 +12,7 @@ export default function Header() {
       <header className="absolute top-0 left-0 w-full z-50">
         <Search />
         <div className="flex justify-center">
-          <Image src="/img/logo.png" alt="Logo da Loja" width={300} height={60} />
+          <Image src="/img/logo.png" alt="Logo da Loja" width={300} height={60} quality={100} />
         </div>
         <nav>
           <div className="flex justify-center space-x-6 py-3 text-white font-medium">
