@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { MdOutlineScreenSearchDesktop } from "react-icons/md";
 
 export default function NotFound() {
   return (
-    <Fragment>
+    <div>
       <header className="flex justify-center p-6">
         <Image src="/img/logo.png" alt="Logo" width={300} height={60}/>
       </header>
@@ -22,6 +21,6 @@ export default function NotFound() {
           <FaArrowRight /> Voltar para o Inicio
         </Link>
       </div>
-    </Fragment>
+    </div>
   );
 }
