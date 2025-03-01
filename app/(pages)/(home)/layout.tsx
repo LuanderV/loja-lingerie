@@ -1,4 +1,5 @@
 import Header from "@/app/(pages)/(home)/components/header/page";
+import Footer from "@/app/(pages)/(home)/components/footer/page";
 
 export default function HomeLayout({
   children,
@@ -10,6 +11,7 @@ export default function HomeLayout({
       <body>
         <Header />
         {children}
+      <Footer />
       </body>
     </html>
   );
