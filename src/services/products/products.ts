@@ -1,6 +1,13 @@
 import { createClient } from "@/utils/supabase/server";
 
-export async function getProductById(id: string) {
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+}
+
+export async function getProductById(id: string): Promise<Product | null> {
   const supabase = await createClient();
 
   const { data: product, error } = await supabase
