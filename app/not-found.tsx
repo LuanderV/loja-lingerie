@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <div>
       <header className="flex justify-center p-6">
-        <Image src="/img/logo.png" alt="Logo" width={300} height={60}/>
+        <Image src="/img/logo.png" alt="Logo" width={300} height={60} />
       </header>
       <div className="min-h-screen flex flex-col justify-center items-center">
         <MdOutlineScreenSearchDesktop className="text-8xl text-pink-600 animate-bounce" />
