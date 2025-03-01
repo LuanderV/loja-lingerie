@@ -3,8 +3,6 @@ import { createClient } from "@/utils/supabase/server";
 interface Product {
   id: string;
   name: string;
-  description: string;
-  price: number;
 }
 
 export async function getProductById(id: string): Promise<Product | null> {

@@ -14,8 +14,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <div>
       <h1 className="text-3xl font-bold">{product.name}</h1>
-      <p className="text-lg">{product.description}</p>
-      <p className="text-xl font-semibold mt-4">R$ {product.price}</p>
+      <p className="text-lg">descrição</p>
+      <p className="text-xl font-semibold mt-4">R$ preço</p>
     </div>
   );
 }
