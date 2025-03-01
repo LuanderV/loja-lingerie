@@ -11,7 +11,7 @@ export default function HomeLayout({
       <body>
         <Header />
         {children}
-      <Footer />
+        <Footer />
       </body>
     </html>
   );

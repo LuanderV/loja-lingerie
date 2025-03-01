@@ -10,7 +10,7 @@ export default function SwiperHeader() {
       <Swiper loop autoplay={{ delay: 100 }} className="w-full h-full">
         <SwiperSlide>
           <Image
-            src="/img/banner-header/banner1.jpg"
+            src="/img/header/banner1.jpg"
             alt="Banner 1"
             layout="fill"
             objectFit="cover"
@@ -19,7 +19,7 @@ export default function SwiperHeader() {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/img/banner-header/banner2.jpg"
+            src="/img/header/banner2.jpg"
             alt="Banner 2"
             layout="fill"
             objectFit="cover"
