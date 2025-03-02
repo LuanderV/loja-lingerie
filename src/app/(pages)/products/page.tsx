@@ -1,4 +1,8 @@
-import { getProducts } from "@/src/app/services/products/products";
+import { getProducts } from "@/src/app/api/products/[slug]/route";
+
+interface Product {
+  params: { id: string };
+}
 
 const ProductsPage = async () => {
   const products = await getProducts();
