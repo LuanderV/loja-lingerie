@@ -1,9 +1,5 @@
 import { getProducts } from "@/src/services/products/products";
 
-type Product = {
-  params: { id: string };
-}
-
 const ProductsPage = async () => {
   const products = await getProducts();
 

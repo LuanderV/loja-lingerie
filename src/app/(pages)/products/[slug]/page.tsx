@@ -1,10 +1,12 @@
 import { getProductById } from "@/src/services/products/products";
 
-type ProductPageProps = {
-  params: { slug: string };
+interface ProductProps {
+  params: {
+    slug: string;
+  };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductProps) {
   const product = await getProductById(params.slug);
 
   if (!product) {
