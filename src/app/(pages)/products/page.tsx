@@ -1,4 +1,4 @@
-import { getProducts } from "@/src/app/api/products/[slug]/route";
+import { getProducts } from "@/src/services/products/products";
 
 interface Product {
   params: { id: string };

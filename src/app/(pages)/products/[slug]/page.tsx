@@ -1,4 +1,4 @@
-import { getProductById } from "@/src/app/api/products/[slug]/route";
+import { getProductById } from "@/src/services/products/products";
 
 interface ProductPageProps {
   params: { slug: string };
