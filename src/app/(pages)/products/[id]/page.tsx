@@ -1,11 +1,11 @@
-import { getProductById } from "@/src/services/products/products";
+import { getProductById } from "@/src/app/services/products/products";
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: { id: string };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await getProductById(params.slug);
+  const product = await getProductById(params.id);
 
   if (!product) {
     return <p>Produto não encontrado.</p>;
