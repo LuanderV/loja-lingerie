@@ -1,6 +1,6 @@
 import { getProductById } from "@/src/services/products/products";
 
-interface ProductPageProps {
+type ProductPageProps = {
   params: { slug: string };
 }
 

@@ -1,6 +1,6 @@
 import { getProducts } from "@/src/services/products/products";
 
-interface Product {
+type Product = {
   params: { id: string };
 }
 
