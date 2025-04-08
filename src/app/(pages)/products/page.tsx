@@ -1,4 +1,6 @@
-import { getProducts } from "@/src/services/products/products";
+import { getProducts } from "@/src/services/products";
+import Link from "next/link";
+import { slugify } from "@/src/lib/slugify";
 
 const ProductsPage = async () => {
   const products = await getProducts();
@@ -21,7 +23,12 @@ const ProductsPage = async () => {
             key={product.id}
             className="border-b p-4 flex justify-between items-center"
           >
-            <span>{product.name}</span>
+            <Link
+              href={`/products/${product.id}-${slugify(product.name)}`}
+              className="text-blue-600 hover:underline"
+            >
+              {product.name}
+            </Link>
           </li>
         ))}
       </ul>
