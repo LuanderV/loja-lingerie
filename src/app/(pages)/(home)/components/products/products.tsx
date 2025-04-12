@@ -26,7 +26,7 @@ const ProductsPage = async () => {
                 <h2 className="text-sm font-semibold text-gray-900">
                   {product.name}
                 </h2>
-                <p className="text-xs text-gray-500 mb-2">test{product.brand}</p>
+                <p className="text-xs text-gray-500 mb-2">{product.desc}</p>
                 <p className="text-pink-600 font-bold text-sm">
                   R$ {product.price}
                 </p>

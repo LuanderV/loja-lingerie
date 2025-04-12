@@ -1,10 +1,23 @@
 import { createClient } from "@/utils/supabase/server";
-// 🔹 Atualizar um produto existente
-export const updateProduct = async (id: string, name: string) => {
+import { Product } from "@/src/types/products";
+
+export const updateProduct = async (product: Product) => {
   const supabase = await createClient();
-  const { error } = await supabase.from("products").update({ name }).eq("id", id);
+
+  const { data, error } = await supabase
+    .from("products")
+    .update({
+      name: product.name,
+      desc: product.desc,
+      price: product.price,
+    })
+    .eq("id", product.id)
+    .select();
 
   if (error) {
     console.error("Erro ao atualizar produto:", error.message);
+    return null;
   }
+
+  return data?.[0];
 };
