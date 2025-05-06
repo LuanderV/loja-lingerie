@@ -52,7 +52,7 @@ export default function DashboardPage() {
   };
 
   // 🔹 Excluir produto
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     fetch(`/api/products`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

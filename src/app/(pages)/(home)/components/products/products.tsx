@@ -17,7 +17,7 @@ const ProductsPage = async () => {
             <Link href={`/products/${product.id}-${slugify(product.name)}`}>
               <div className="aspect-square w-full bg-gray-100 flex items-center justify-center">
                 <img
-                  src={"/placeholder.png"}
+                  src={"/img/logo.png"}
                   alt={product.name}
                   className="h-full w-full object-cover"
                 />

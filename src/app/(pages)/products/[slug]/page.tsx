@@ -13,8 +13,8 @@ export default async function ProductPage({ params }: ProductProps) {
   return (
     <div>
       <h1 className="text-3xl font-bold">{product.name}</h1>
-      <p className="text-lg">desc</p>
-      <p className="text-xl font-semibold mt-4">R$ preço</p>
+      <p className="text-lg">{product.desc}</p>
+      <p className="text-xl font-semibold mt-4">R$ {product.price}</p>
     </div>
   );
 }
