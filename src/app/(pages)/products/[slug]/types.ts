@@ -1,5 +1,5 @@
-export interface ProductProps {
-  params: {
+export type ProductProps = {
+  params: Promise<{
     slug: string;
-  };
-}
+  }>;
+};
