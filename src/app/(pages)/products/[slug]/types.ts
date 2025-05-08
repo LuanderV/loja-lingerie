@@ -1,6 +1,5 @@
 export interface ProductProps {
-    params: {
-      slug: string;
-    };
-  }
-  
+  params: {
+    slug: string;
+  };
+}

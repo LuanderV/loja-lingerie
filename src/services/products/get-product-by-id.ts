@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { Product } from "@/src/types/products";
 
-export const getProductById = async (id: string) => {
+export const getProductById = async (id: number) => {
   const supabase = await createClient();
 
   const { data, error } = await supabase
