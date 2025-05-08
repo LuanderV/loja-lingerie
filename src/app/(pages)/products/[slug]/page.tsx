@@ -1,8 +1,9 @@
 import { getProductById } from "@/src/services/products/get-product-by-id";
 import { ProductProps } from "./types";
 
-export default async function ProductPage({ params }: ProductProps) {
-  const id = Number(params.slug.split("-")[0]) 
+export default async function ProductPage(props: ProductProps) {
+  const params = await props.params;
+  const id = Number(params.slug.split("-")[0])
   const product = await getProductById(id);
 
   if (!product) {
