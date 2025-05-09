@@ -8,7 +8,11 @@
 // import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
 // import { Label } from '@radix-ui/react-label';
 // import { Input } from '@/src/components/ui/input';
-
+export default function DashboardPage() {
+  return (
+    <h1>teste</h1>
+  )
+};
 // export default function DashboardPage() {
 //   const [products, setProducts] = useState<Product[]>([]);
 //   const [name, setName] = useState('');
