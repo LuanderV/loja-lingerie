@@ -11,8 +11,9 @@
 export default function DashboardPage() {
   return (
     <h1>teste</h1>
-  )
-};
+  );
+}
+
 // export default function DashboardPage() {
 //   const [products, setProducts] = useState<Product[]>([]);
 //   const [name, setName] = useState('');
