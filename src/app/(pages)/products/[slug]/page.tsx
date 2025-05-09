@@ -5,7 +5,7 @@ export default async function ProductPage(props: ProductProps) {
   const { slug } = params;
   const id = Number(slug.split("-")[0]);
 
-  const res = await fetch(`/api/products/${id}`);
+  const res = await fetch(`https://gaveta-de-mulher.vercel.app/api/products/${id}`);
 
   const product = await res.json();
 
