@@ -1,15 +1,11 @@
-interface ProductProps {
-  params: Promise<{
-    slug: string;
-  }>
-};
+import { ProductProps } from "./types";
 
 export default async function ProductPage(props: ProductProps) {
   const params = await props.params;
   const { slug } = params;
   const id = Number(slug.split("-")[0]);
 
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(`/api/products/${id}`);
 
   const product = await res.json();
 
