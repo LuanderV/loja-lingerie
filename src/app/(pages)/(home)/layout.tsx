@@ -1,5 +1,5 @@
-import Header from "@/src/app/(pages)/(home)/(components)/(header)/page";
-import Footer from "@/src/app/(pages)/(home)/(components)/(footer)/page";
+import Header from "@/src/components/header/header";
+import Footer from "@/src/components/footer/footer";
 
 export default function HomeLayout({
   children,
@@ -7,12 +7,10 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
   );
 }

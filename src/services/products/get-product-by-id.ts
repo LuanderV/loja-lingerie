@@ -1,9 +1,10 @@
 import { createClient } from "@/utils/supabase/server";
+import { Product } from "@/src/types/products";
 
-export async function getProductById(id: string) {
+export const getProductById = async (id: number) => {
   const supabase = await createClient();
 
-  const { data: product, error } = await supabase
+  const { data, error } = await supabase
     .from("products")
     .select("*")
     .eq("id", id)
@@ -14,5 +15,5 @@ export async function getProductById(id: string) {
     return null;
   }
 
-  return product;
-}
+  return data as Product;
+};

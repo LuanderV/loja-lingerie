@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaCcVisa, FaCcMastercard } from "react-icons/fa";
-import { MdOutlinePix } from "react-icons/md";
 
 export default function Footer() {
   return (
@@ -41,9 +39,9 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-pink-400">Nos siga</h3>
           <div className="mt-2 flex space-x-4">
-            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"><FaInstagram /></a>
-            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"><FaFacebookF /></a>
-            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"><FaWhatsapp /></a>
+            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"></a>
+            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"></a>
+            <a href="#" className="text-gray-400 hover:text-pink-400 text-2xl"></a>
           </div>
         </div>
       </div>
@@ -52,9 +50,9 @@ export default function Footer() {
       <div className="mt-6 text-center">
         <h3 className="text-lg font-semibold text-pink-400">Formas de Pagamento</h3>
         <div className="mt-2 flex justify-center space-x-4">
-          <FaCcVisa className="text-3xl text-gray-400" />
-          <FaCcMastercard className="text-3xl text-gray-400" />
-          <MdOutlinePix className="text-3xl text-gray-400" />
+          <span className="text-3xl text-gray-400" />
+          <span className="text-3xl text-gray-400" />
+          <span className="text-3xl text-gray-400" />
         </div>
       </div>
 

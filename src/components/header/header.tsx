@@ -3,15 +3,16 @@ import Link from "next/link";
 import Search from "./search";
 import SwiperHeader from "./swiper-header";
 
+// Defina as rotas corretamente para cada item de menu
 const menuItems = [
-  "Lançamentos",
-  "Sutiã",
-  "Calcinha",
-  "Body",
-  "Moda",
-  "Pijamas",
-  "Outlet",
-  "Chá de Lingerie",
+  { name: "Dashboard", route: "/dashboard" },
+  { name: "Sutiã", route: "/bras" },
+  { name: "Calcinha", route: "/panties" },
+  { name: "Body", route: "/body" },
+  { name: "Moda", route: "/fashion" },
+  { name: "Pijamas", route: "/pajamas" },
+  { name: "Outlet", route: "/outlet" },
+  { name: "Chá de Lingerie", route: "/lingerie-tea" },
 ];
 
 export default function Header() {
@@ -34,15 +35,16 @@ export default function Header() {
           <div className="flex justify-center space-x-6 py-3 text-white font-medium">
             {menuItems.map((item) => (
               <ul
-                key={item}
+                key={item.name}
                 className="hover:border-b-2 hover:border-pink-600 hover:rounded pb-1"
               >
                 <li>
+                  {/* Utilize a rota específica para cada item de menu */}
                   <Link
-                    href="#"
+                    href={item.route}
                     className="hover:text-gray-300 transition-colors"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               </ul>

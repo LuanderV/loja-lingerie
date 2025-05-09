@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <Toaster position="top-center"/>
+        {children}
+      </body>
     </html>
   );
 }
