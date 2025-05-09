@@ -1,5 +1,5 @@
 export type ProductProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  }
 };

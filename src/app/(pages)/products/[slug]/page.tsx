@@ -1,10 +1,16 @@
-import { getProductById } from "@/src/services/products/get-product-by-id";
-import { ProductProps } from "./types";
+interface ProductProps {
+  params: {
+    slug: string;
+  }
+};
 
-export default async function ProductPage(props: ProductProps) {
-  const { slug } = await props.params;
+export default async function ProductPage({ params }: ProductProps) {
+  const { slug } = params;
   const id = Number(slug.split("-")[0]);
-  const product = await getProductById(id);
+
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+
+  const product = await res.json();
 
   if (!product) {
     return <p>Produto não encontrado.</p>;

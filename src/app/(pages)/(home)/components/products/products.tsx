@@ -1,9 +1,10 @@
-import { getProducts } from "@/src/services/products";
 import { slugify } from "@/src/lib/slugify";
 import Link from "next/link";
+import { Product } from "@/src/types/products";
 
 const ProductsPage = async () => {
-  const products = await getProducts();
+  const res = await fetch('http://localhost:3000/api/products');
+  const products: Product[] = await res.json();
 
   return (
     <div className="container mx-auto p-6">

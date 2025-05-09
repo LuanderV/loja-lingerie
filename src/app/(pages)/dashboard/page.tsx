@@ -13,14 +13,21 @@ export default function DashboardPage() {
   const [desc, setDesc] = useState('');
   const [price, setPrice] = useState('');
   const [editing, setEditing] = useState<Product | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // 🔹 Carregar os produtos
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch('/api/products');
-      const data = await res.json();
-      setProducts(data);
+      try {
+        const res = await fetch('/api/products');
+        if (!res.ok) throw new Error('Erro ao carregar os produtos');
+        const data = await res.json();
+        setProducts(data);
+      } catch (err: any) {
+        setError(err.message);
+      }
     };
+
     fetchProducts();
   }, []);
 
@@ -29,37 +36,56 @@ export default function DashboardPage() {
     e.preventDefault();
     const productData = { name, desc, price: parseFloat(price) };
 
-    if (editing) {
-      await fetch(`/api/products`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editing.id, ...productData }),
-      });
-      setEditing(null);
-    } else {
-      await fetch('/api/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(productData),
-      });
-    }
+    try {
+      let response;
 
-    setName('');
-    setDesc('');
-    setPrice('');
-    const res = await fetch('/api/products');
-    setProducts(await res.json());
+      if (editing) {
+        response = await fetch('/api/products', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: editing.id, ...productData }),
+        });
+      } else {
+        response = await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData),
+        });
+      }
+
+      if (!response.ok) throw new Error('Erro ao salvar o produto');
+      
+      // Limpar o formulário
+      setName('');
+      setDesc('');
+      setPrice('');
+      setEditing(null);
+
+      // Recarregar a lista de produtos
+      const updatedProducts = await fetch('/api/products').then(res => res.json());
+      setProducts(updatedProducts);
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   // 🔹 Excluir produto
   const handleDelete = async (id: number) => {
-    fetch(`/api/products`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }),
-    });
-    const res = await fetch('/api/products');
-    setProducts(await res.json());
+    try {
+      const response = await fetch('/api/products', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!response.ok) throw new Error('Erro ao excluir o produto');
+
+      // Recarregar a lista de produtos
+      const updatedProducts = await fetch('/api/products').then(res => res.json());
+      setProducts(updatedProducts);
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   // 🔹 Editar produto
@@ -73,6 +99,8 @@ export default function DashboardPage() {
   return (
     <div className="p-8">
       <h1 className="text-3xl font-semibold mb-6">Dashboard de Produtos</h1>
+
+      {error && <div className="text-red-500 mb-4">{error}</div>}
 
       {/* Formulário de Adição/Atualização de Produto */}
       <Card className="mb-8">
