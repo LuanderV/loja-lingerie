@@ -5,13 +5,13 @@ import SwiperHeader from "./swiper-header";
 
 const menuItems = [
   { name: "Dashboard", route: "/dashboard" },
-  { name: "Sutiã", route: "/bras" },
-  { name: "Calcinha", route: "/panties" },
-  { name: "Body", route: "/body" },
-  { name: "Moda", route: "/fashion" },
-  { name: "Pijamas", route: "/pijamas" },
-  { name: "Outlet", route: "/outlet" },
-  { name: "Chá de Lingerie", route: "/lingerie-tea" },
+  { name: "Sutiã", route: "/" },
+  { name: "Calcinha", route: "/" },
+  { name: "Body", route: "/" },
+  { name: "Moda", route: "/" },
+  { name: "Pijamas", route: "/" },
+  { name: "Outlet", route: "/" },
+  { name: "Chá de Lingerie", route: "/" },
 ];
 
 export default function Header() {

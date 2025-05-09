@@ -5,37 +5,37 @@ const collections = [
   {
     name: "Sutiãs sem bojo",
     image: "https://picsum.photos/seed/sutias-sem-bojo/300",
-    link: "/colecoes/sutias-sem-bojo",
+    link: "/",
   },
   {
     name: "Calcinhas básicas",
     image: "https://picsum.photos/seed/calcinhas-basicas/300",
-    link: "/colecoes/calcinhas-basicas",
+    link: "/",
   },
   {
     name: "Bodies",
     image: "https://picsum.photos/seed/bodies/300",
-    link: "/colecoes/bodies",
+    link: "/",
   },
   {
     name: "Calcinhas de renda",
     image: "https://picsum.photos/seed/calcinhas-renda/300",
-    link: "/colecoes/calcinhas-renda",
+    link: "/",
   },
   {
     name: "Sutiãs de renda",
     image: "https://picsum.photos/seed/sutias-renda/300",
-    link: "/colecoes/sutias-renda",
+    link: "/",
   },
   {
     name: "Calcinhas fio dental",
     image: "https://picsum.photos/seed/calcinhas-fio-dental/300",
-    link: "/colecoes/calcinhas-fio-dental",
+    link: "/",
   },
   {
     name: "Sutiã com bojo",
     image: "https://picsum.photos/seed/sutia-com-bojo/300",
-    link: "/colecoes/sutia-com-bojo",
+    link: "/",
   },
 ];
 
