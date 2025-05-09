@@ -1,12 +1,10 @@
 import { slugify } from "@/src/lib/slugify";
 import Link from "next/link";
+import { getProducts } from "@/src/services/products";
 import { Product } from "@/src/types/products";
 
 const ProductsPage = async () => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-
-  const res = await fetch(`${baseUrl}/api/products`);
-  const products: Product[] = await res.json();
+  const products: Product[] = await getProducts();
 
   return (
     <div className="container mx-auto p-6">
