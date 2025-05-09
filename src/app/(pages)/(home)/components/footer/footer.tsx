@@ -17,10 +17,10 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-pink-400">Links Rápidos</h3>
           <ul className="mt-2 space-y-2">
-            <li><Link href="/sobre" className="text-gray-400 hover:text-pink-400">Sobre</Link></li>
-            <li><Link href="/contato" className="text-gray-400 hover:text-pink-400">Contato</Link></li>
-            <li><Link href="/ajuda" className="text-gray-400 hover:text-pink-400">Ajuda</Link></li>
-            <li><Link href="/politicas" className="text-gray-400 hover:text-pink-400">Políticas da Loja</Link></li>
+            <li><Link href="/" className="text-gray-400 hover:text-pink-400">Sobre</Link></li>
+            <li><Link href="/" className="text-gray-400 hover:text-pink-400">Contato</Link></li>
+            <li><Link href="/" className="text-gray-400 hover:text-pink-400">Ajuda</Link></li>
+            <li><Link href="/" className="text-gray-400 hover:text-pink-400">Políticas da Loja</Link></li>
           </ul>
         </div>
 
