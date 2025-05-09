@@ -9,7 +9,7 @@ const menuItems = [
   { name: "Calcinha", route: "/panties" },
   { name: "Body", route: "/body" },
   { name: "Moda", route: "/fashion" },
-  { name: "Pijamas", route: "/pajamas" },
+  { name: "Pijamas", route: "/pijamas" },
   { name: "Outlet", route: "/outlet" },
   { name: "Chá de Lingerie", route: "/lingerie-tea" },
 ];

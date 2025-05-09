@@ -10,7 +10,7 @@ export default function SwiperHeader() {
       <Swiper loop autoplay={{ delay: 100 }} className="w-full h-full">
         <SwiperSlide>
           <Image
-            src="/img/header/banner1.jpg"
+            src="https://picsum.photos/1280/720"
             alt="Banner 1"
             fill
             style={{ objectFit: "cover" }}
@@ -19,7 +19,7 @@ export default function SwiperHeader() {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/img/header/banner2.jpg"
+            src="https://picsum.photos/1280/720"
             alt="Banner 2"
             fill
             style={{ objectFit: "cover" }}
