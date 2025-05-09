@@ -1,11 +1,11 @@
-import { ProductProps } from "./types";
+import { ProductProps } from "@/src/app/(pages)/product/[slug]/types";
 
 export default async function ProductPage(props: ProductProps) {
   const params = await props.params;
   const { slug } = params;
   const id = Number(slug.split("-")[0]);
 
-  const res = await fetch(`https://gaveta-de-mulher.vercel.app/api/products/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products/${id}`);
 
   const product = await res.json();
 

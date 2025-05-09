@@ -3,7 +3,6 @@ import Link from "next/link";
 import Search from "./search";
 import SwiperHeader from "./swiper-header";
 
-// Defina as rotas corretamente para cada item de menu
 const menuItems = [
   { name: "Dashboard", route: "/dashboard" },
   { name: "Sutiã", route: "/bras" },

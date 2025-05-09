@@ -4,36 +4,41 @@ import Link from "next/link";
 const collections = [
   {
     name: "Sutiãs sem bojo",
-    image: "/img/collections-grid/sutias-sem-bojo.jpg",
+    image: "https://picsum.photos/seed/sutias-sem-bojo/300",
     link: "/colecoes/sutias-sem-bojo",
   },
   {
     name: "Calcinhas básicas",
-    image: "/img/collections-grid/calcinhas-basicas.jpg",
+    image: "https://picsum.photos/seed/calcinhas-basicas/300",
     link: "/colecoes/calcinhas-basicas",
   },
-  { name: "Bodies", image: "/img/collections-grid/bodies.jpg", link: "/colecoes/bodies" },
+  {
+    name: "Bodies",
+    image: "https://picsum.photos/seed/bodies/300",
+    link: "/colecoes/bodies",
+  },
   {
     name: "Calcinhas de renda",
-    image: "/img/collections-grid/calcinhas-renda.jpg",
+    image: "https://picsum.photos/seed/calcinhas-renda/300",
     link: "/colecoes/calcinhas-renda",
   },
   {
     name: "Sutiãs de renda",
-    image: "/img/collections-grid/sutias-renda.jpg",
+    image: "https://picsum.photos/seed/sutias-renda/300",
     link: "/colecoes/sutias-renda",
   },
   {
     name: "Calcinhas fio dental",
-    image: "/img/collections-grid/calcinhas-fio-dental.jpg",
+    image: "https://picsum.photos/seed/calcinhas-fio-dental/300",
     link: "/colecoes/calcinhas-fio-dental",
   },
   {
     name: "Sutiã com bojo",
-    image: "/img/collections-grid/sutia-com-bojo.jpg",
+    image: "https://picsum.photos/seed/sutia-com-bojo/300",
     link: "/colecoes/sutia-com-bojo",
   },
 ];
+
 
 export default function CollectionsGrid() {
   return (

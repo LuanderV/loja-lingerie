@@ -3,7 +3,9 @@ import Link from "next/link";
 import { Product } from "@/src/types/products";
 
 const ProductsPage = async () => {
-  const res = await fetch('http://localhost:3000/api/products');
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+  const res = await fetch(`${baseUrl}/api/products`);
   const products: Product[] = await res.json();
 
   return (
@@ -15,7 +17,7 @@ const ProductsPage = async () => {
             key={product.id}
             className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
           >
-            <Link href={`/products/${product.id}-${slugify(product.name)}`}>
+            <Link href={`/product/${product.id}-${slugify(product.name)}`}>
               <div className="aspect-square w-full bg-gray-100 flex items-center justify-center">
                 <img
                   src={"/img/logo.png"}

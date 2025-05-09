@@ -12,8 +12,8 @@ export default function SwiperHeader() {
           <Image
             src="/img/header/banner1.jpg"
             alt="Banner 1"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             priority
           />
         </SwiperSlide>
@@ -21,8 +21,8 @@ export default function SwiperHeader() {
           <Image
             src="/img/header/banner2.jpg"
             alt="Banner 2"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             priority
           />
         </SwiperSlide>
