@@ -1,10 +1,11 @@
 interface ProductProps {
-  params: {
+  params: Promise<{
     slug: string;
-  }
+  }>
 };
 
-export default async function ProductPage({ params }: ProductProps) {
+export default async function ProductPage(props: ProductProps) {
+  const params = await props.params;
   const { slug } = params;
   const id = Number(slug.split("-")[0]);
 

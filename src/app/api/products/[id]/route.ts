@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
 import { getProductById } from "@/src/services/products/get-product-by-id";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = Number(params.id);
 
   if (isNaN(id)) {
