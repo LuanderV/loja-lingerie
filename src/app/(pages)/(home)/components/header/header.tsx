@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Search from "./search";
 import SwiperHeader from "./swiper-header";
 
 const menuItems = [
@@ -18,37 +17,33 @@ export default function Header() {
   return (
     <div>
       <header className="absolute top-0 left-0 w-full z-50">
-        <Search />
 
-        <div className="flex justify-center">
+        {/* Logo */}
+        <div className="flex justify-center py-4">
           <Image
             src="/img/logo.png"
             alt="Logo da Loja"
-            width={300}
+            width={200}
             height={60}
             quality={100}
+            className="object-contain"
           />
         </div>
 
-        <nav>
-          <div className="flex justify-center space-x-6 py-3 text-white font-medium">
+        {/* Menu */}
+        <nav className="overflow-x-auto">
+          <ul className="flex justify-center md:justify-center flex-wrap gap-4 md:gap-6 px-4 py-3 text-white font-medium text-sm md:text-base whitespace-nowrap">
             {menuItems.map((item) => (
-              <ul
-                key={item.name}
-                className="hover:border-b-2 hover:border-pink-600 hover:rounded pb-1"
-              >
-                <li>
-                  {/* Utilize a rota específica para cada item de menu */}
-                  <Link
-                    href={item.route}
-                    className="hover:text-gray-300 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              </ul>
+              <li key={item.name}>
+                <Link
+                  href={item.route}
+                  className="hover:text-pink-400 transition-colors border-b-2 border-transparent hover:border-pink-500 pb-1"
+                >
+                  {item.name}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </nav>
       </header>
 
