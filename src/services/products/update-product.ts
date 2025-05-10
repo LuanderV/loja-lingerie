@@ -10,6 +10,7 @@ export const updateProduct = async (product: Product) => {
       name: product.name,
       desc: product.desc,
       price: product.price,
+      image_url: product.image_url,
     })
     .eq("id", product.id)
     .select();

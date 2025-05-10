@@ -1,28 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Product } from '@/src/types/products';
-import { Button } from '@/src/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
-import { Label } from '@radix-ui/react-label';
-import { Input } from '@/src/components/ui/input';
+import { useEffect, useRef, useState } from "react";
+import { Product } from "@/src/types/products";
+import { Button } from "@/src/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/ui/card";
+import { Label } from "@radix-ui/react-label";
+import { Input } from "@/src/components/ui/input";
+import { uploadImage } from "@/src/services/products/upload-image";
 
 export default function DashboardPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [name, setName] = useState('');
-  const [desc, setDesc] = useState('');
-  const [price, setPrice] = useState('');
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [price, setPrice] = useState("");
   const [editing, setEditing] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [image, setImage] = useState<File | null>(null);
+
+  // Referência para o input de imagem
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/products');
-      if (!res.ok) throw new Error('Erro ao carregar os produtos');
+      const res = await fetch("/api/products");
+      if (!res.ok) throw new Error("Erro ao carregar os produtos");
       const data = await res.json();
       setProducts(data);
     } catch (err: any) {
-      setError(err.message || 'Erro desconhecido ao buscar produtos');
+      setError(err.message || "Erro desconhecido ao buscar produtos");
     }
   };
 
@@ -33,49 +43,59 @@ export default function DashboardPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const parsedPrice = parseFloat(price);
-    if (isNaN(parsedPrice)) {
-      setError('Preço inválido');
-      return;
+    let image_url = editing?.image_url || "";
+
+    if (image) {
+      if (!editing) {
+        const uploadedUrl = await uploadImage(image, Number(products.length + 1));
+        if (!uploadedUrl) {
+          setError("Falha ao enviar imagem");
+          return;
+        }
+        image_url = uploadedUrl;
+      }
     }
 
-    const productData = { name, desc, price: parsedPrice };
+    const productData = { name, desc, price, image_url };
 
     try {
-      const response = await fetch('/api/products', {
-        method: editing ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editing ? { id: editing.id, ...productData } : productData),
+      const response = await fetch("/api/products", {
+        method: editing ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          editing ? { id: editing.id, ...productData } : productData
+        ),
       });
 
-      if (!response.ok) throw new Error('Erro ao salvar o produto');
+      if (!response.ok) throw new Error("Erro ao salvar o produto");
 
-      // Resetar campos
-      setName('');
-      setDesc('');
-      setPrice('');
+      setName("");
+      setDesc("");
+      setPrice("");
+      setImage(null);
+      imageInputRef.current && (imageInputRef.current.value = ""); // Limpa o input file
       setEditing(null);
       setError(null);
 
       await fetchProducts();
     } catch (error: any) {
-      setError(error.message || 'Erro ao salvar o produto');
+      setError(error.message || "Erro ao salvar o produto");
     }
   };
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch('/api/products', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/products", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
 
-      if (!response.ok) throw new Error('Erro ao excluir o produto');
+      if (!response.ok) throw new Error("Erro ao excluir o produto");
 
       await fetchProducts();
     } catch (error: any) {
-      setError(error.message || 'Erro ao excluir o produto');
+      setError(error.message || "Erro ao excluir o produto");
     }
   };
 
@@ -95,17 +115,29 @@ export default function DashboardPage() {
       {/* Formulário */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>{editing ? 'Editar Produto' : 'Adicionar Produto'}</CardTitle>
+          <CardTitle>
+            {editing ? "Editar Produto" : "Adicionar Produto"}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="name">Nome</Label>
-              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+              <Input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
             </div>
             <div>
               <Label htmlFor="desc">Descrição</Label>
-              <Input id="desc" value={desc} onChange={(e) => setDesc(e.target.value)} required />
+              <Input
+                id="desc"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                required
+              />
             </div>
             <div>
               <Label htmlFor="price">Preço</Label>
@@ -117,15 +149,33 @@ export default function DashboardPage() {
                 required
               />
             </div>
+            <div>
+              <Label htmlFor="image">Imagem</Label>
+              <Input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files?.[0] || null)}
+                ref={imageInputRef}
+              />
+            </div>
             <div className="flex space-x-4">
-              <Button type="submit">{editing ? 'Atualizar' : 'Adicionar'}</Button>
+              <Button type="submit">
+                {editing ? "Atualizar" : "Adicionar"}
+              </Button>
               {editing && (
-                <Button type="button" variant="secondary" onClick={() => {
-                  setEditing(null);
-                  setName('');
-                  setDesc('');
-                  setPrice('');
-                }}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setEditing(null);
+                    setName("");
+                    setDesc("");
+                    setPrice("");
+                    setImage(null);
+                    imageInputRef.current && (imageInputRef.current.value = "");
+                  }}
+                >
                   Cancelar
                 </Button>
               )}
@@ -146,15 +196,34 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-sm text-gray-600">{product.desc}</p>
-                    <p className="font-semibold">R$ {product.price.toFixed(2)}</p>
+                  <div className="flex gap-4 items-start">
+                    {product.image_url && (
+                      <img
+                        src={product.image_url}
+                        alt={product.name}
+                        className="w-20 h-20 object-cover rounded"
+                      />
+                    )}
+                    <div>
+                      <p className="text-sm text-gray-600">{product.desc}</p>
+                      <p className="font-semibold">
+                        R$ {product.price.toFixed(2)}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(product)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleEdit(product)}
+                    >
                       Editar
                     </Button>
-                    <Button variant="destructive" size="sm" onClick={() => handleDelete(product.id)}>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => handleDelete(product.id)}
+                    >
                       Excluir
                     </Button>
                   </div>
