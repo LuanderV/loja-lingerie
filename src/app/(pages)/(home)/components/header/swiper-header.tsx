@@ -16,7 +16,7 @@ export default function SwiperHeader() {
       >
         <SwiperSlide>
           <Image
-            src="https://picsum.photos/1280/720"
+            src="/img/header/banner1.jpg"
             alt="Banner 1"
             fill
             className="object-cover"
@@ -25,7 +25,7 @@ export default function SwiperHeader() {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="https://picsum.photos/1280/720"
+            src="/img/header/banner2.jpg"
             alt="Banner 2"
             fill
             className="object-cover"
