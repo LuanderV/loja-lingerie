@@ -3,5 +3,6 @@ export interface Product {
   name: string;
   desc: string;
   price: number;
-  image_url?: string;
+  image_front_url: string;
+  image_back_url: string;
 }
