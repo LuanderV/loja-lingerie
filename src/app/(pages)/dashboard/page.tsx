@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { Product } from "@/src/types/products";
@@ -20,10 +20,11 @@ export default function DashboardPage() {
   const [price, setPrice] = useState("");
   const [editing, setEditing] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [image, setImage] = useState<File | null>(null);
+  const [imageFront, setImageFront] = useState<File | null>(null);
+  const [imageBack, setImageBack] = useState<File | null>(null);
 
-  // Referência para o input de imagem
-  const imageInputRef = useRef<HTMLInputElement | null>(null);
+  const imageFrontRef = useRef<HTMLInputElement | null>(null);
+  const imageBackRef = useRef<HTMLInputElement | null>(null);
 
   const fetchProducts = async () => {
     try {
@@ -43,20 +44,28 @@ export default function DashboardPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let image_url = editing?.image_url || "";
+    let image_front_url = editing?.image_front_url || "";
+    let image_back_url = editing?.image_back_url || "";
 
-    if (image) {
-      if (!editing) {
-        const uploadedUrl = await uploadImage(image, Number(products.length + 1));
-        if (!uploadedUrl) {
-          setError("Falha ao enviar imagem");
-          return;
-        }
-        image_url = uploadedUrl;
+    if (imageFront) {
+      const uploadedFront = await uploadImage(imageFront, Date.now());
+      if (!uploadedFront) {
+        setError("Falha ao enviar imagem da frente");
+        return;
       }
+      image_front_url = uploadedFront;
     }
 
-    const productData = { name, desc, price, image_url };
+    if (imageBack) {
+      const uploadedBack = await uploadImage(imageBack, Date.now() + 1);
+      if (!uploadedBack) {
+        setError("Falha ao enviar imagem de costas");
+        return;
+      }
+      image_back_url = uploadedBack;
+    }
+
+    const productData = { name, desc, price: parseFloat(price), image_front_url, image_back_url};
 
     try {
       const response = await fetch("/api/products", {
@@ -72,8 +81,10 @@ export default function DashboardPage() {
       setName("");
       setDesc("");
       setPrice("");
-      setImage(null);
-      imageInputRef.current && (imageInputRef.current.value = ""); // Limpa o input file
+      setImageFront(null);
+      setImageBack(null);
+      imageFrontRef.current && (imageFrontRef.current.value = "");
+      imageBackRef.current && (imageBackRef.current.value = "");
       setEditing(null);
       setError(null);
 
@@ -112,7 +123,6 @@ export default function DashboardPage() {
 
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      {/* Formulário */}
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>
@@ -150,13 +160,23 @@ export default function DashboardPage() {
               />
             </div>
             <div>
-              <Label htmlFor="image">Imagem</Label>
+              <Label htmlFor="imageFront">Imagem da Frente</Label>
               <Input
-                id="image"
+                id="imageFront"
                 type="file"
                 accept="image/*"
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
-                ref={imageInputRef}
+                onChange={(e) => setImageFront(e.target.files?.[0] || null)}
+                ref={imageFrontRef}
+              />
+            </div>
+            <div>
+              <Label htmlFor="imageBack">Imagem de Costas</Label>
+              <Input
+                id="imageBack"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageBack(e.target.files?.[0] || null)}
+                ref={imageBackRef}
               />
             </div>
             <div className="flex space-x-4">
@@ -172,8 +192,10 @@ export default function DashboardPage() {
                     setName("");
                     setDesc("");
                     setPrice("");
-                    setImage(null);
-                    imageInputRef.current && (imageInputRef.current.value = "");
+                    setImageFront(null);
+                    setImageBack(null);
+                    imageFrontRef.current && (imageFrontRef.current.value = "");
+                    imageBackRef.current && (imageBackRef.current.value = "");
                   }}
                 >
                   Cancelar
@@ -197,12 +219,19 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="flex justify-between items-center">
                   <div className="flex gap-4 items-start">
-                    {product.image_url && (
-                      <img
-                        src={product.image_url}
-                        alt={product.name}
-                        className="w-20 h-20 object-cover rounded"
-                      />
+                    {product.image_front_url && (
+                      <div className="relative w-20 h-20 group">
+                        <img
+                          src={product.image_front_url}
+                          alt="Frente"
+                          className="absolute top-0 left-0 w-full h-full object-cover rounded transition-opacity duration-300 group-hover:opacity-0"
+                        />
+                        <img
+                          src={product.image_back_url}
+                          alt="Costas"
+                          className="absolute top-0 left-0 w-full h-full object-cover rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      </div>
                     )}
                     <div>
                       <p className="text-sm text-gray-600">{product.desc}</p>

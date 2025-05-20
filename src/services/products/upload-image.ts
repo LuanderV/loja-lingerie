@@ -25,7 +25,7 @@ export async function uploadImage(file: File, productId: number) {
 
   const { error: updateError } = await supabase
     .from("products")
-    .update({ image_url: publicUrl })
+    .update({ image_front_url: publicUrl, image_back_url: publicUrl })
     .eq("id", productId);
 
   if (updateError) {
