@@ -18,7 +18,7 @@ const ProductsPage = async () => {
             className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition relative"
           >
             <Link href={`/product/${product.id}-${slugify(product.name)}`}>
-              <div className="aspect-square w-full bg-gray-100 relative rounded-t-lg overflow-hidden">
+              <div className="aspect-square w-full h-80 bg-gray-100 relative rounded-t-lg overflow-hidden">
                 <ProductImage
                   frontImage={product.image_front_url}
                   backImage={product.image_back_url}
