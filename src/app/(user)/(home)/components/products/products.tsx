@@ -2,7 +2,7 @@ import Link from "next/link";
 import { slugify } from "@/src/lib/slugify";
 import { getProducts } from "@/src/services/products";
 import { Product } from "@/src/types/products";
-import ProductImage from "@/src/components/product-image";
+import { ProductImage } from "@/src/components/product-image";
 import { Heart } from "lucide-react";
 
 const ProductsPage = async () => {
@@ -18,7 +18,7 @@ const ProductsPage = async () => {
             className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition relative"
           >
             <Link href={`/product/${product.id}-${slugify(product.name)}`}>
-              <div className="aspect-square w-full bg-gray-100 relative rounded-t-lg overflow-hidden">
+              <div className="aspect-square w-full h-80 bg-gray-100 relative rounded-t-lg overflow-hidden">
                 <ProductImage
                   frontImage={product.image_front_url}
                   backImage={product.image_back_url}
