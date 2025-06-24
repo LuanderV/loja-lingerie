@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/src/components/ui/label";
 import { Input } from "@/src/components/ui/input";
 import { uploadImage } from "@/src/services/products/upload-image";
 

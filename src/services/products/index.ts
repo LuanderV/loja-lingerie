@@ -1,5 +1,5 @@
-export { addProduct } from "./add-product";
-export { deleteProduct } from "./delete-product";
-export { getProductById } from "./get-product-by-id";
-export { getProducts } from "./get-products";
-export { updateProduct } from "./update-product";
+export * from "./add-product";
+export * from "./delete-product";
+export * from "./get-product-by-id";
+export * from "./get-products";
+export * from "./update-product";

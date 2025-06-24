@@ -2,7 +2,7 @@ import Link from "next/link";
 import { slugify } from "@/src/lib/slugify";
 import { getProducts } from "@/src/services/products";
 import { Product } from "@/src/types/products";
-import ProductImage from "@/src/components/product-image";
+import { ProductImage } from "@/src/components/product-image";
 import { Heart } from "lucide-react";
 
 const ProductsPage = async () => {
